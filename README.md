@@ -65,6 +65,34 @@ used under the hood.
 The library also comes with a small abstract class you can base your composite service on if you wish.
 The class is named `CompositeService` and you can find it [here](src/CompositeService.php).
 
+Here is an example of how you can use it:
+
+```php
+<?php
+
+use Setono\CompositeCompilerPass\CompositeService;
+
+/**
+ * @property list<TaggedServiceInterface> $services
+ *
+ * @extends CompositeService<TaggedServiceInterface>
+ */
+final class ConcreteCompositeService extends CompositeService implements TaggedServiceInterface
+{
+    public function process(): void
+    {
+        foreach ($this->services as $service) {
+            // Both your IDE, Psalm, and PHPStan knows that $service is an instance of TaggedServiceInterface
+        }
+    }
+}
+
+interface TaggedServiceInterface
+{
+
+}
+```
+
 [ico-version]: https://poser.pugx.org/setono/composite-compiler-pass/v/stable
 [ico-license]: https://poser.pugx.org/setono/composite-compiler-pass/license
 [ico-github-actions]: https://github.com/Setono/composite-compiler-pass/workflows/build/badge.svg
