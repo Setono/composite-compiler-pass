@@ -1,0 +1,49 @@
+{
+    "name": "setono/composite-compiler-pass",
+    "description": "A composite compiler pass for Symfony to make it even easier to create composite services",
+    "license": "MIT",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Joachim Løvgaard",
+            "email": "joachim@loevgaard.dk"
+        }
+    ],
+    "require": {
+        "php": ">=8.1",
+        "symfony/dependency-injection": "^5.4 || ^6.0"
+    },
+    "require-dev": {
+        "infection/infection": "^0.26",
+        "matthiasnoback/symfony-dependency-injection-test": "^4.3",
+        "phpunit/phpunit": "^9.5",
+        "psalm/plugin-phpunit": "^0.18",
+        "setono/code-quality-pack": "^2.4"
+    },
+    "prefer-stable": true,
+    "autoload": {
+        "psr-4": {
+            "Setono\\CompositeCompilerPass\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Setono\\CompositeCompilerPass\\": "tests/"
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": false,
+            "ergebnis/composer-normalize": true,
+            "infection/extension-installer": true,
+            "php-http/discovery": true
+        },
+        "sort-packages": true
+    },
+    "scripts": {
+        "analyse": "psalm",
+        "check-style": "ecs check",
+        "fix-style": "ecs check --fix",
+        "phpunit": "phpunit"
+    }
+}
