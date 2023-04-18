@@ -6,6 +6,9 @@
 [![Code Coverage][ico-code-coverage]][link-code-coverage]
 [![Mutation testing][ico-infection]][link-infection]
 
+When you use composite services you find yourself writing the same compiler pass over and over again.
+This library will give you the compiler pass you need so you don't have to think about it again.
+
 ## Installation
 
 ```bash
@@ -14,7 +17,45 @@ composer require setono/composite-compiler-pass
 
 ## Usage
 
-TODO
+Let's presume you have a composite service like this:
+
+```php
+<?php
+final class YourCompositeService
+{
+    /**
+     * @var list<object>
+     */
+    private array $taggedServices = [];
+
+    public function add(object $taggedService): void
+    {
+        $this->taggedServices[] = $taggedService;
+    }
+}
+```
+
+that has the service id `your_bundle.your_service`,
+and you want to add services that are tagged with `tag` automatically to this composite service.
+
+In your bundle class you do this:
+
+```php
+<?php
+
+use Setono\CompositeCompilerPass\CompositeCompilerPass;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\HttpKernel\Bundle\Bundle;
+
+final class YourBundle extends Bundle
+{
+    public function build(ContainerBuilder $container): void
+    {
+        $container->addCompilerPass(new CompositeCompilerPass('your_bundle.your_service', 'tag'));
+    }
+}
+
+```
 
 [ico-version]: https://poser.pugx.org/setono/composite-compiler-pass/v/stable
 [ico-license]: https://poser.pugx.org/setono/composite-compiler-pass/license
