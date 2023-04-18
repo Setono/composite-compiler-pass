@@ -54,8 +54,16 @@ final class YourBundle extends Bundle
         $container->addCompilerPass(new CompositeCompilerPass('your_bundle.your_service', 'tag'));
     }
 }
-
 ```
+
+**NOTICE** You can even define your tagged services with a priority and they will be automatically sorted before
+being added to the composite service. This is thanks to the `Symfony\Component\DependencyInjection\Compiler\PriorityTaggedServiceTrait`
+used under the hood.
+
+### Composite service included
+
+The library also comes with a small abstract class you can base your composite service on if you wish.
+The class is named `CompositeService` and you can find it [here](src/CompositeService.php).
 
 [ico-version]: https://poser.pugx.org/setono/composite-compiler-pass/v/stable
 [ico-license]: https://poser.pugx.org/setono/composite-compiler-pass/license
