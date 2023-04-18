@@ -38,4 +38,18 @@ final class CompositeCompilerPassTest extends AbstractCompilerPassTestCase
             ],
         );
     }
+
+    /**
+     * @test
+     */
+    public function it_does_nothing_if_composite_service_is_not_defined(): void
+    {
+        $taggedService = new Definition();
+        $taggedService->addTag('tag');
+        $this->setDefinition('tagged_service', $taggedService);
+
+        $this->compile();
+
+        $this->assertContainerBuilderNotHasService('composite');
+    }
 }
