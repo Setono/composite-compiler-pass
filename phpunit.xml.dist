@@ -8,7 +8,7 @@
         </include>
     </coverage>
     <testsuites>
-        <testsuite name="Budbee PHP SDK Test Suite">
+        <testsuite name="Composite Compiler Pass Test Suite">
             <directory>tests</directory>
         </testsuite>
     </testsuites>
