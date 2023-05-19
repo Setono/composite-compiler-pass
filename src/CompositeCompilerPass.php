@@ -12,22 +12,22 @@ final class CompositeCompilerPass implements CompilerPassInterface
 {
     use PriorityTaggedServiceTrait;
 
-    public function __construct(
-        /**
-         * This is the service id of composite service, i.e. the service that holds the services tagged by $tag
-         */
-        private readonly string $compositeServiceId,
+    private string $compositeServiceId;
 
-        /**
-         * Services with this tag will be added to the composite service
-         */
-        private readonly string $tag,
+    private string $tag;
 
-        /**
-         * The name of the method to call when adding a tagged service to the composite service
-         */
-        private readonly string $method = 'add',
-    ) {
+    private string $method;
+
+    /**
+     * @param string $compositeServiceId This is the service id of composite service, i.e. the service that holds the services tagged by $tag
+     * @param string $tag Services with this tag will be added to the composite service
+     * @param string $method The name of the method to call when adding a tagged service to the composite service
+     */
+    public function __construct(string $compositeServiceId, string $tag, string $method = 'add')
+    {
+        $this->compositeServiceId = $compositeServiceId;
+        $this->tag = $tag;
+        $this->method = $method;
     }
 
     public function process(ContainerBuilder $container): void
