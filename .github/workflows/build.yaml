@@ -15,7 +15,7 @@ jobs:
         strategy:
             matrix:
                 php-version:
-                    - "7.4"
+                    - "8.4"
 
                 dependencies:
                     - "highest"
@@ -53,11 +53,10 @@ jobs:
         strategy:
             matrix:
                 php-version:
-                    - "7.4"
-                    - "8.0"
                     - "8.1"
                     - "8.2"
                     - "8.3"
+                    - "8.4"
 
                 dependencies:
                     - "lowest"
@@ -73,18 +72,15 @@ jobs:
                     coverage: "none"
                     extensions: "${{ env.PHP_EXTENSIONS }}"
                     php-version: "${{ matrix.php-version }}"
-                    tools: "composer-require-checker, composer-unused"
+                    tools: "composer-dependency-analyser"
 
             -   name: "Install composer dependencies"
                 uses: "ramsey/composer-install@v3"
                 with:
                     dependency-versions: "${{ matrix.dependencies }}"
 
-            -   name: "Run maglnet/composer-require-checker"
-                run: "composer-require-checker check"
-
-            -   name: "Run composer-unused/composer-unused"
-                run: "composer-unused || true"
+            -   name: "Run shipmonk/composer-dependency-analyser"
+                run: "composer-dependency-analyser"
 
     static-code-analysis:
         name: "Static Code Analysis"
@@ -94,11 +90,10 @@ jobs:
         strategy:
             matrix:
                 php-version:
-                    - "7.4"
-                    - "8.0"
                     - "8.1"
                     - "8.2"
                     - "8.3"
+                    - "8.4"
 
                 dependencies:
                     - "lowest"
@@ -131,11 +126,10 @@ jobs:
         strategy:
             matrix:
                 php-version:
-                    - "7.4"
-                    - "8.0"
                     - "8.1"
                     - "8.2"
                     - "8.3"
+                    - "8.4"
 
                 dependencies:
                     - "lowest"
@@ -168,7 +162,7 @@ jobs:
         strategy:
             matrix:
                 php-version:
-                    - "8.3"
+                    - "8.4"
 
                 dependencies:
                     - "highest"
@@ -205,7 +199,7 @@ jobs:
         strategy:
             matrix:
                 php-version:
-                    - "8.3"
+                    - "8.4"
 
                 dependencies:
                     - "highest"

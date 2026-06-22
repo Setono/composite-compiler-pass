@@ -27,6 +27,9 @@ final class CompositeServiceTest extends TestCase
  */
 final class ConcreteCompositeService extends CompositeService
 {
+    /**
+     * @return list<Service>
+     */
     public function getServices(): array
     {
         return $this->services;
