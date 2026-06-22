@@ -15,14 +15,14 @@ jobs:
         strategy:
             matrix:
                 php-version:
-                    - "7.4"
+                    - "8.1"
 
                 dependencies:
                     - "highest"
 
         steps:
             -   name: "Checkout"
-                uses: "actions/checkout@v4"
+                uses: "actions/checkout@v6"
 
             -   name: "Setup PHP, with composer and extensions"
                 uses: "shivammathur/setup-php@v2"
@@ -32,7 +32,7 @@ jobs:
                     coverage: "none"
 
             -   name: "Install composer dependencies"
-                uses: "ramsey/composer-install@v3"
+                uses: "ramsey/composer-install@v4"
                 with:
                     dependency-versions: "${{ matrix.dependencies }}"
 
@@ -53,11 +53,11 @@ jobs:
         strategy:
             matrix:
                 php-version:
-                    - "7.4"
-                    - "8.0"
                     - "8.1"
                     - "8.2"
                     - "8.3"
+                    - "8.4"
+                    - "8.5"
 
                 dependencies:
                     - "lowest"
@@ -65,7 +65,7 @@ jobs:
 
         steps:
             -   name: "Checkout"
-                uses: "actions/checkout@v4"
+                uses: "actions/checkout@v6"
 
             -   name: "Setup PHP, with composer and extensions"
                 uses: "shivammathur/setup-php@v2"
@@ -73,18 +73,15 @@ jobs:
                     coverage: "none"
                     extensions: "${{ env.PHP_EXTENSIONS }}"
                     php-version: "${{ matrix.php-version }}"
-                    tools: "composer-require-checker, composer-unused"
+                    tools: "composer-dependency-analyser"
 
             -   name: "Install composer dependencies"
-                uses: "ramsey/composer-install@v3"
+                uses: "ramsey/composer-install@v4"
                 with:
                     dependency-versions: "${{ matrix.dependencies }}"
 
-            -   name: "Run maglnet/composer-require-checker"
-                run: "composer-require-checker check"
-
-            -   name: "Run composer-unused/composer-unused"
-                run: "composer-unused || true"
+            -   name: "Run shipmonk/composer-dependency-analyser"
+                run: "composer-dependency-analyser"
 
     static-code-analysis:
         name: "Static Code Analysis"
@@ -94,11 +91,11 @@ jobs:
         strategy:
             matrix:
                 php-version:
-                    - "7.4"
-                    - "8.0"
                     - "8.1"
                     - "8.2"
                     - "8.3"
+                    - "8.4"
+                    - "8.5"
 
                 dependencies:
                     - "lowest"
@@ -106,7 +103,7 @@ jobs:
 
         steps:
             -   name: "Checkout"
-                uses: "actions/checkout@v4"
+                uses: "actions/checkout@v6"
 
             -   name: "Setup PHP, with composer and extensions"
                 uses: "shivammathur/setup-php@v2"
@@ -116,7 +113,7 @@ jobs:
                     coverage: "none"
 
             -   name: "Install composer dependencies"
-                uses: "ramsey/composer-install@v3"
+                uses: "ramsey/composer-install@v4"
                 with:
                     dependency-versions: "${{ matrix.dependencies }}"
 
@@ -131,11 +128,11 @@ jobs:
         strategy:
             matrix:
                 php-version:
-                    - "7.4"
-                    - "8.0"
                     - "8.1"
                     - "8.2"
                     - "8.3"
+                    - "8.4"
+                    - "8.5"
 
                 dependencies:
                     - "lowest"
@@ -143,7 +140,7 @@ jobs:
 
         steps:
             -   name: "Checkout"
-                uses: "actions/checkout@v4"
+                uses: "actions/checkout@v6"
 
             -   name: "Setup PHP, with composer and extensions"
                 uses: "shivammathur/setup-php@v2"
@@ -153,7 +150,7 @@ jobs:
                     coverage: "none"
 
             -   name: "Install composer dependencies"
-                uses: "ramsey/composer-install@v3"
+                uses: "ramsey/composer-install@v4"
                 with:
                     dependency-versions: "${{ matrix.dependencies }}"
 
@@ -168,14 +165,14 @@ jobs:
         strategy:
             matrix:
                 php-version:
-                    - "8.3"
+                    - "8.4"
 
                 dependencies:
                     - "highest"
 
         steps:
             -   name: "Checkout"
-                uses: "actions/checkout@v4"
+                uses: "actions/checkout@v6"
 
             -   name: "Setup PHP, with composer and extensions"
                 uses: "shivammathur/setup-php@v2"
@@ -185,7 +182,7 @@ jobs:
                     php-version: "${{ matrix.php-version }}"
 
             -   name: "Install composer dependencies"
-                uses: "ramsey/composer-install@v3"
+                uses: "ramsey/composer-install@v4"
                 with:
                     dependency-versions: "${{ matrix.dependencies }}"
 
@@ -205,14 +202,14 @@ jobs:
         strategy:
             matrix:
                 php-version:
-                    - "8.3"
+                    - "8.4"
 
                 dependencies:
                     - "highest"
 
         steps:
             -   name: "Checkout"
-                uses: "actions/checkout@v4"
+                uses: "actions/checkout@v6"
 
             -   name: "Setup PHP, with composer and extensions"
                 uses: "shivammathur/setup-php@v2"
@@ -222,7 +219,7 @@ jobs:
                     php-version: "${{ matrix.php-version }}"
 
             -   name: "Install composer dependencies"
-                uses: "ramsey/composer-install@v3"
+                uses: "ramsey/composer-install@v4"
                 with:
                     dependency-versions: "${{ matrix.dependencies }}"
 
