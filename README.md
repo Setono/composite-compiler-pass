@@ -82,7 +82,7 @@ final class ConcreteCompositeService extends CompositeService implements TaggedS
     public function process(): void
     {
         foreach ($this->services as $service) {
-            // Both your IDE, Psalm, and PHPStan knows that $service is an instance of TaggedServiceInterface
+            // Both your IDE and PHPStan know that $service is an instance of TaggedServiceInterface
         }
     }
 }
