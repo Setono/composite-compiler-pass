@@ -31,5 +31,6 @@ The compiler pass does not require the composite to extend `CompositeService` �
 ## Compatibility constraints
 
 - `composer.json` requires `php: >=8.1` and `symfony/dependency-injection: ^6.4 || ^7.4 || ^8.0`. CI runs PHP 8.1–8.4 against both lowest and highest dependency sets.
-- Source must stay **PHP 8.1-compatible** — that's the floor, even though newer PHP is installed locally. `config.platform.php` is pinned to `8.1.99` in `composer.json`, so `composer update` resolves dev tooling against 8.1; this is what keeps PHPUnit at `^10` and Infection at `^0.29` (their newer majors require PHP ≥8.2). Don't bump those past the 8.1 ceiling.
+- Source must stay **PHP 8.1-compatible** — that's the floor, even though newer PHP is installed locally. The dev tooling is held to 8.1-compatible majors by the `require-dev` constraints: PHPUnit at `^10` and Infection at `^0.29` (their newer majors require PHP ≥8.2). Don't bump those past the 8.1 ceiling.
+- CI runs the **coding-standards (ECS) job on the lowest supported PHP (8.1)** — style fixers/checkers can emit or trip over version-specific syntax, so they belong on the floor, not the newest PHP.
 - The dev toolchain is **inlined**, not pulled via `setono/code-quality-pack` — the individual tools (PHPStan + extensions, ECS via `sylius-labs/coding-standard`, `ergebnis/composer-normalize`, PHPUnit, Infection) are listed directly in `require-dev`.

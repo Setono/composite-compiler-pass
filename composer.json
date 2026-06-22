@@ -42,9 +42,6 @@
             "infection/extension-installer": true,
             "phpstan/extension-installer": true
         },
-        "platform": {
-            "php": "8.1.99"
-        },
         "sort-packages": true
     },
     "scripts": {
